@@ -155,12 +155,12 @@ Key code compliance requirements include:
 
 Upgrading soffit wind resistance requires replacing fragile vinyl panels with engineered materials capable of withstanding cyclonic positive and negative pressures.
 
-### 1. Heavy-Gauge Aluminum Soffit Systems
+### Heavy-Gauge Aluminum Soffit Systems
 High-performance aluminum soffits are manufactured from **0.032-inch or 0.040-inch thick architectural aluminum alloy** (compared to paper-thin 0.019-inch residential trim coil). The panels feature deep structural stiffening ribs and positive mechanical interlocking seams.
 
 When fastened to structural wood lookouts every 12 inches using stainless steel screws, heavy-gauge aluminum assemblies achieve wind uplift ratings exceeding **-65 to -90 PSF**, easily surviving Category 5 hurricane wind shear.
 
-### 2. Vented Structural Fiber Cement Soffit
+### Vented Structural Fiber Cement Soffit
 Fiber cement soffit panels (such as James Hardie HardieSoffit) are composed of Portland cement, sand, and cellulose fibers. Manufactured in 1/4-inch and 7/16-inch thicknesses, fiber cement is completely non-combustible, immune to termite attack, and rigid.
 
 Installed with 4d hot-dip galvanized ring-shank nails driven into framing every 12 inches, fiber cement panels will not flex, unclip, or blow out under extreme hurricane wind loads. Engineered pre-vented fiber cement panels feature thousands of laser-drilled micro-perforations that provide continuous attic ventilation while physically blocking heavy water droplets.

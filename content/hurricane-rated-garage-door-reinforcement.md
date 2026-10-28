@@ -99,7 +99,7 @@ A code-compliant wind-rated garage door must resist both being crushed inward in
 
 Upgrading an existing non-wind-rated garage door or specifying a new impact-rated assembly requires strengthening three distinct mechanical components: the door panels, the vertical guide tracks, and the structural wall anchoring.
 
-### 1. Horizontal Galvanized Steel U-Bar Struts
+### Horizontal Galvanized Steel U-Bar Struts
 To prevent horizontal door panels from bending under load, structural steel stiffeners known as **U-bars (hat-channel struts)** must be bolted across the interior face of each panel. These struts are cold-formed from high-tensile 20-gauge or 18-gauge galvanized steel and measure between 2-1/4 inches and 4 inches deep.
 
 ```
@@ -123,17 +123,17 @@ To prevent horizontal door panels from bending under load, structural steel stif
 
 A standard wind-rated double door incorporates three to five continuous horizontal struts spanning the full 16-foot width of the door. The struts add substantial section modulus to the panel assembly, distributing wind pressure directly out to the end hinges and vertical tracks.
 
-### 2. Commercial-Grade 14-Gauge Track Geometry
+### Commercial-Grade 14-Gauge Track Geometry
 Standard builder-grade garage doors utilize thin 18-gauge or 20-gauge steel tracks mounted with lightweight stamped brackets. Under hurricane wind shear, these thin tracks bend outward like tin foil, allowing the rollers to escape.
 
 Wind-load certified systems mandate **heavy-duty 14-gauge or 12-gauge vertical tracks** rolled from high-strength galvanized structural steel. The track profile features a deeper retention lip that wraps securely around the roller wheels, preventing roller dislocation even when the door flexes under maximum dynamic pressure.
 
-### 3. Solid Steel Long-Stem Rollers
+### Solid Steel Long-Stem Rollers
 Standard residential guide rollers feature short 3-inch steel stems supporting small plastic wheels. Under intense lateral wind deflection, short stems easily slide out of the roller carrier hinges.
 
 Hurricane assemblies require **heavy-duty 7-inch or 9-inch long-stem rollers** fitted with solid steel or reinforced nylon wheels with precision ball bearings. The extended stem length provides substantial horizontal travel, ensuring the roller remains deeply engaged inside the vertical track even during peak panel bowing.
 
-### 4. Structural Wall Anchoring Brackets
+### Structural Wall Anchoring Brackets
 The vertical tracks must be secured to the structural garage jambs using heavy-gauge commercial mounting brackets spaced at tight intervals (typically every 12 to 18 inches on center):
 
 - **Wood-Frame Jambs:** Brackets must be secured using 5/16-inch diameter by 3-inch long heat-treated lag screws penetrating directly into solid double 2x6 framing studs.
