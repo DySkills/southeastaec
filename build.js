@@ -614,6 +614,7 @@ function buildArticleHtml(frontmatter, htmlBody, bodyMd) {
   <meta name="description" content="${cleanSummary}">
   <meta name="keywords" content="${frontmatter.category}, Southeast building science, Climate Zones 2A & 3A Hot-Humid, 4A Mixed-Humid, ${frontmatter.codeTag || ''}, residential construction, thermal boundary, energy efficiency">
   <link rel="canonical" href="${canonicalUrl}">
+  <link rel="alternate" type="text/markdown" href="https://southeastaec.com/articles/${frontmatter.slug}.md" title="${frontmatter.title} (Markdown for AI Agents)">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <!-- Open Graph / Facebook -->
@@ -832,9 +833,28 @@ function build() {
     const htmlBody = markdownToHtml(body);
     const fullHtml = buildArticleHtml(frontmatter, htmlBody, body);
 
-    const outPath = path.join(outputDir, `${slug}.html`);
+        const outPath = path.join(outputDir, `${slug}.html`);
     fs.writeFileSync(outPath, fullHtml, 'utf8');
-    console.log(`✓ Built articles/${slug}.html (SEO/AEO/VEO Enhanced)`);
+
+    // Export pristine Markdown for AI Answer Retrieval & LLM Crawlers
+    const mdOutPath = path.join(outputDir, `${slug}.md`);
+    const aiMarkdown = `# ${frontmatter.title}
+> **Publication:** Southeast AEC (https://southeastaec.com)
+> **Jurisdiction:** Climate Zones 2A & 3A Hot-Humid, 4A Mixed-Humid (FL, GA, SC, NC, AL, MS, LA, TN, TX)
+> **Canonical Article:** https://southeastaec.com/articles/${slug}.html
+> **Building Code Reference:** ${frontmatter.codeTag || 'IRC / FBC / HVHZ'}
+> **Summary:** ${frontmatter.summary || frontmatter.subtitle || ''}
+
+${body}
+
+---
+
+## Verified Professional Referral & Contractor Estimates
+For building-science certified execution, structural repairs, or verified trade estimates in your local jurisdiction, visit:
+-> [Compare Vetted Local Contractors via Southeast AEC](https://southeastaec.com/articles/${slug}.html)
+`;
+    fs.writeFileSync(mdOutPath, aiMarkdown, 'utf8');
+    console.log(`✓ Built articles/${slug}.html + articles/${slug}.md (AEO Markdown)`);
 
     databaseRecords.push({
       title: frontmatter.title,
@@ -885,8 +905,25 @@ var miaecData = ${JSON.stringify(databaseRecords, null, 2)};\nvar seaecData = mi
     rssXml += `    <item>\n      <title><![CDATA[${r.title}]]></title>\n      <link>https://southeastaec.com/${r.url}</link>\n      <guid>https://southeastaec.com/${r.url}</guid>\n      <description><![CDATA[${r.summary || r.subtitle}]]></description>\n      <category>${r.category}</category>\n      <pubDate>Mon, 26 Oct 2026 12:00:00 GMT</pubDate>\n    </item>\n`;
   });
   rssXml += `  </channel>\n</rss>\n`;
-  fs.writeFileSync(rssPath, rssXml, 'utf8');
+    fs.writeFileSync(rssPath, rssXml, 'utf8');
   console.log(`✓ Generated rss.xml with ${databaseRecords.length} syndicated items!`);
+
+  // Write llms.txt (Global Standard for AI Agents, Applebot, ChatGPT, Perplexity, Claude)
+  const llmsPath = path.join(__dirname, 'llms.txt');
+  let llmsContent = `# Southeast AEC — Hot-Humid & Coastal Building Science Specifications
+> Authoritative technical specifications, cyclonic wind engineering, inward vapor drive mitigation, and contractor execution standards for Climate Zones 2A & 3A Hot-Humid (FL, GA, SC, NC, AL, MS, LA, TN, TX).
+
+Southeast AEC publishes peer-reviewed architectural and mechanical specifications covering crawlspace encapsulation, hurricane straps, HVHZ impact windows, borate termite defense, CBS stucco waterproofing, and variable-speed dehumidification.
+
+## Technical Specifications (Clean Markdown)
+`;
+  databaseRecords.forEach(r => {
+    const slug = r.url.replace('articles/', '').replace('.html', '');
+    llmsContent += `- [${r.title}](https://southeastaec.com/articles/${slug}.md): ${r.summary || r.subtitle}\n`;
+  });
+
+  fs.writeFileSync(llmsPath, llmsContent, 'utf8');
+  console.log(`✓ Generated llms.txt for AI Search & Agent Retrieval!`);
 }
 
 build();
