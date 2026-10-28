@@ -43,7 +43,7 @@ function renderContractorCTA(frontmatter, citiesStr) {
     <div class="mt-14 p-6 sm:p-8 rounded-2xl bg-white border-2 border-steel-border shadow-sm">
       <div class="flex items-center justify-between gap-2 mb-2">
         <span class="text-xs font-mono uppercase tracking-widest text-crimson font-bold">Vetted Local Estimates</span>
-        <span class="text-[10px] font-mono text-slate-400">Midwest Region (Climate Zones 2A & 3A Hot-Humid & 4A Mixed)</span>
+        <span class="text-[10px] font-mono text-slate-400">Southeast Region (Climate Zones 2A & 3A Hot-Humid & 4A Mixed-Humid)</span>
       </div>
       <h3 class="text-2xl font-bold text-navy font-serif">
         Compare Free Local Quotes in Your Area
@@ -63,7 +63,7 @@ function renderContractorCTA(frontmatter, citiesStr) {
     <div class="mt-14 p-8 rounded-2xl bg-white border-2 border-steel-border shadow-sm">
       <div class="flex items-center justify-between gap-2 mb-2">
         <span class="text-xs font-mono uppercase tracking-widest text-crimson font-bold">Vetted Contractor Network</span>
-        <span class="text-[10px] font-mono text-slate-400">Midwest Region</span>
+        <span class="text-[10px] font-mono text-slate-400">Southeast Region</span>
       </div>
       <h3 class="text-2xl font-bold text-navy font-serif">
         Need Vetted Local Specialists in Your Area?
@@ -182,6 +182,22 @@ function markdownToHtml(md) {
 
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i].trim();
+
+    // Raw script / JSON-LD / HTML block handling (pass through intact)
+    if (line.startsWith('<script') || line.startsWith('<style')) {
+      let rawBlock = line + '\n';
+      const closeTag = line.startsWith('<script') ? '</script>' : '</style>';
+      if (!line.includes(closeTag)) {
+        i++;
+        while (i < lines.length) {
+          rawBlock += lines[i] + '\n';
+          if (lines[i].includes(closeTag)) break;
+          i++;
+        }
+      }
+      html += rawBlock;
+      continue;
+    }
 
     // Carousel parsing (:::carousel ... :::)
     if (line.startsWith(':::carousel')) {
@@ -459,8 +475,8 @@ function formatInline(str) {
 // Generate complete HTML page with Enterprise-Grade SEO, AEO, and VEO Architecture
 function buildArticleHtml(frontmatter, htmlBody, bodyMd) {
   const slug = frontmatter.slug || 'article';
-  const citiesStr = Array.isArray(frontmatter.cities) ? frontmatter.cities.slice(0, 5).join(', ') + '...' : frontmatter.cities || 'Midwest';
-  const statesStr = Array.isArray(frontmatter.states) ? frontmatter.states.join(', ') : frontmatter.states || 'All Midwest';
+  const citiesStr = Array.isArray(frontmatter.cities) ? frontmatter.cities.slice(0, 5).join(', ') + '...' : frontmatter.cities || 'Southeast';
+  const statesStr = Array.isArray(frontmatter.states) ? frontmatter.states.join(', ') : frontmatter.states || 'All Southeast';
   const formatBadge = frontmatter.format ? frontmatter.format.toUpperCase() : 'FEATURE';
   const leadTag = frontmatter.leadType ? ` &bull; ${frontmatter.leadType.toUpperCase()} LEAD` : '';
 
@@ -529,7 +545,7 @@ function buildArticleHtml(frontmatter, htmlBody, bodyMd) {
       "inLanguage": "en-US",
       "proficiencyLevel": "Expert",
       "genre": frontmatter.format || "Building Science Analysis",
-      "keywords": `${frontmatter.category}, Building Science, Climate Zone 5, Midwest Architecture, ${frontmatter.codeTag || ''}`,
+      "keywords": `${frontmatter.category}, Building Science, Climate Zones 2A, 3A & 4A, Southeast Architecture, ${frontmatter.codeTag || ''}`,
       "author": {
         "@type": "Organization",
         "name": frontmatter.author || "Southeast AEC Building Science",
@@ -537,7 +553,7 @@ function buildArticleHtml(frontmatter, htmlBody, bodyMd) {
       },
       "publisher": {
         "@type": "Organization",
-        "name": "Midwest Architecture, Engineering & Construction",
+        "name": "Southeast Architecture, Engineering & Construction",
         "url": siteUrl
       },
       "datePublished": "2026-10-01T08:00:00Z",
@@ -596,7 +612,7 @@ function buildArticleHtml(frontmatter, htmlBody, bodyMd) {
   <!-- Primary SEO Tags -->
   <title>${frontmatter.title} | Southeast AEC</title>
   <meta name="description" content="${cleanSummary}">
-  <meta name="keywords" content="${frontmatter.category}, Midwest building science, Climate Zone 5, ${frontmatter.codeTag || ''}, residential construction, thermal boundary, energy efficiency">
+  <meta name="keywords" content="${frontmatter.category}, Southeast building science, Climate Zones 2A & 3A Hot-Humid, 4A Mixed-Humid, ${frontmatter.codeTag || ''}, residential construction, thermal boundary, energy efficiency">
   <link rel="canonical" href="${canonicalUrl}">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -662,6 +678,30 @@ ${JSON.stringify(mainSchema, null, 2)}
   </script>
 </head>
 <body class="bg-[#FBFBFC] text-slate-800 font-sans antialiased selection:bg-navy selection:text-white min-h-screen flex flex-col">
+
+  <!-- Top Network Bar (AEC Media Network) -->
+  <div class="bg-slate-900 text-slate-300 text-[11px] font-mono border-b border-slate-800 py-1.5 px-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-slate-400 uppercase tracking-widest font-semibold">AEC Media Network:</span>
+        <div class="flex items-center gap-3 overflow-x-auto">
+          <a href="https://midwestaec.com" class="hover:text-white transition">Midwest</a>
+          <span class="text-slate-700">•</span>
+          <a href="https://northwestaec.com" class="hover:text-white transition">Northwest</a>
+          <span class="text-slate-700">•</span>
+          <a href="https://southwestaec.com" class="hover:text-white transition">Southwest</a>
+          <span class="text-slate-700">•</span>
+          <a href="https://southeastaec.com" class="text-white font-bold border-b border-crimson pb-0.5">Southeast</a>
+          <span class="text-slate-700">•</span>
+          <a href="https://northeastaec.com" class="hover:text-white transition">Northeast</a>
+          <span class="text-slate-700">•</span>
+          <a href="https://tropicalaec.com" class="hover:text-white transition">Tropical</a>
+        </div>
+      </div>
+      <span class="hidden sm:inline text-slate-400 text-[10px] uppercase tracking-wider">Independent Building Science</span>
+    </div>
+  </div>
+
 
   <!-- Header -->
   <header class="border-b border-slate-200 bg-white/95 backdrop-blur sticky top-0 z-50">
@@ -803,8 +843,8 @@ function build() {
       leadType: frontmatter.leadType || '',
       category: frontmatter.category,
       catSlug: frontmatter.catSlug,
-      cities: frontmatter.cities || ["All Midwest"],
-      states: frontmatter.states || ["All Midwest"],
+      cities: frontmatter.cities || ["All Southeast"],
+      states: frontmatter.states || ["All Southeast"],
       summary: frontmatter.summary || '',
       codeTag: frontmatter.codeTag || "Building Science Spec",
       type: frontmatter.format || "Article",
@@ -822,7 +862,7 @@ function build() {
   const dataJsContent = `// Auto-generated from content/*.md by build.js
 // Do not edit manually; edit files in content/*.md and run 'node build.js'
 
-var miaecData = ${JSON.stringify(databaseRecords, null, 2)};
+var miaecData = ${JSON.stringify(databaseRecords, null, 2)};\nvar seaecData = miaecData;
 `;
 
   fs.writeFileSync(dataJsPath, dataJsContent, 'utf8');
@@ -837,6 +877,16 @@ var miaecData = ${JSON.stringify(databaseRecords, null, 2)};
 
   fs.writeFileSync(sitemapPath, xml, 'utf8');
   console.log(`✓ Generated sitemap.xml with ${sitemapUrls.length} URLs!`);
+
+  // Write rss.xml
+  const rssPath = path.join(__dirname, 'rss.xml');
+  let rssXml = `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n    <title>SoutheastAEC™ — Building Science &amp; Envelope Specifications</title>\n    <link>https://southeastaec.com</link>\n    <description>Independent building science publication analyzing inward vapor drive, unvented crawlspace dehumidification, hurricane wind shear tie-downs, and coastal moisture control across the American Southeast.</description>\n    <language>en-us</language>\n    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>\n    <atom:link href="https://southeastaec.com/rss.xml" rel="self" type="application/rss+xml" />\n`;
+  databaseRecords.forEach(r => {
+    rssXml += `    <item>\n      <title><![CDATA[${r.title}]]></title>\n      <link>https://southeastaec.com/${r.url}</link>\n      <guid>https://southeastaec.com/${r.url}</guid>\n      <description><![CDATA[${r.summary || r.subtitle}]]></description>\n      <category>${r.category}</category>\n      <pubDate>Mon, 26 Oct 2026 12:00:00 GMT</pubDate>\n    </item>\n`;
+  });
+  rssXml += `  </channel>\n</rss>\n`;
+  fs.writeFileSync(rssPath, rssXml, 'utf8');
+  console.log(`✓ Generated rss.xml with ${databaseRecords.length} syndicated items!`);
 }
 
 build();
